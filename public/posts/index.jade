@@ -1,0 +1,3 @@
+for post, slug in public.posts.data
+    li
+        a(href="/posts/#{ slug }")=post.excerpt

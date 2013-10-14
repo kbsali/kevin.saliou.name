@@ -1,0 +1,74 @@
+!!!
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="description", content="")
+        meta(name="author", content="#{ author_name }")
+        meta(name="keywords", content="#{ site_keywords }")
+        meta(property="og:title", content="#{ title } | #{ site_name }")
+        meta(property="og:type", content="website")
+        meta(property="og:description", content="#{ site_description }">
+        meta(property="og:site_name", content="#{ title } | #{ site_name }")
+        meta(property="og:url", content="#{ site_url }")
+
+        title #{ title } | #{ site_name }
+
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")
+        link(rel="author", href="https://plus.google.com/#{ gplus }")
+        //[if lt IE 9]
+        script(src="/vendor/assets/js/html5shiv.js")
+        script(src="/vendor/assets/js/respond.min.js")
+        //[endif]
+    body
+        #wrap
+            div(class="navbar navbar-inverse navbar-fixed-top")
+                .container
+                    .navbar-header
+                        button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-collapse")
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href="/") #{ site_name }
+                    div(class="collapse navbar-collapse")
+                        ul(class="nav navbar-nav")
+                            li.active
+                                a(href="/") Posts
+                        ul(class="nav navbar-nav navbar-right")
+                            li
+                                a(href="https://github.com/#{ github }")
+                                    i(class="icon-2x icon-github")
+                                        span.visible-print GitHub
+                            li
+                                a(href="http://www.linkedin.com/in/#{ linkedin }")
+                                    i(class="icon-2x icon-linkedin")
+                                        span.visible-print LinkedIn
+                            li
+                                a(href="https://twitter.com/#{ twitter }")
+                                    i(class="icon-2x icon-twitter")
+                                        span.visible-print Twitter
+                            // li
+                            //     a(href="#about") About
+                            // li
+                            //     a(href="#contact") Contact
+
+            .container
+                div(class="col-xs-12 col-sm-9")
+                    != yield
+                div(class="col-xs-6 col-sm-3", id="sidebar", role="navigation")
+                    div(class="well sidebar-nav")
+                        ul.nav
+                            for post, slug in public.posts.data
+                                li
+                                    a(href="/posts/#{ slug }", class="#{ current.source == slug ? 'active' : '' }")=post.title
+            if disqus_enabled
+                .container
+                    != partial("partials/disqus")
+
+        // #footer
+        //     .container
+        //         p(class="text-muted credit")
+        //             | Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.
+        script(src="/vendor/bootstrap-3.0.0/assets/js/jquery.js")
+        script(src="/vendor/bootstrap-3.0.0/dist/js/bootstrap.min.js")
