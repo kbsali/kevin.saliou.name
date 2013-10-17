@@ -1,6 +1,14 @@
 {
-    "2013-10-08-harp-jade": {
-        "title": "Starting up with Harp & Jade",
+    "2013-10-12-getting-started-with-harp": {
+        "title": "Starting up with Harp",
+        "date": "Oct 12, 2013"
+    },
+    "2013-10-11-getting-started-with-jade": {
+        "title": "Starting up with Jade",
+        "date": "Oct 11, 2013"
+    },
+    "2013-10-08-looking-for-the-static-site-generator": {
+        "title": "Looking for The static site generator",
         "date": "Oct 08, 2013"
     },
     "2013-10-01-geojson-carburantes": {

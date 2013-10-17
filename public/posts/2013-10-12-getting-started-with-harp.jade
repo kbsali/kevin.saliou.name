@@ -1,0 +1,192 @@
+h1 Starting up with Harp
+
+p.
+    The obvious place to check when starting up with another new tool is its <a href="http://harpjs.com/docs/">documentation page</a>. Harp has a pretty good set of documentation, but in many ways it could be improved. What I normally enjoy when starting up with frameworks of some sort is to have a real-case tutorial example explained.
+
+h2 Install & Run
+
+p.
+    As describe in the <a href="http://harpjs.com/docs/quick-start">quick-start</a> guide, starting with harps is as simple as executing the following :
+pre.
+    sudo npm install harp -g
+    mkdir hello-world
+    cd hello-world
+    echo "h2 Hello World" > index.jade
+    harp server
+p.
+    You are now ready to access your harp application by opening <code>http://localhost:9000</code>. Now Harp will "listen" to any changes you make to your project folder (modify existing files, creating new ones etc...) and dynamicly compile all this to html and css.
+
+h3 Deploy or Freeze!
+
+p.
+    Harp requires <a href="http://nodejs.org/">nodejs</a> to be installed, and nowadays it's not very common to find cheap or free solutions for hosting nodejs applications. Your concern might even be that you just prefer to serve stupid static files with solutions optimized for that (Nginx, G-WAN, etc...). Anyway, Harp allows you to compile your project to pure html and saves all the generated files in a <code>www/</code> folder at the root of your project ready to be uploaded to your server.
+
+pre.
+    harp compile
+
+h2 Layout & Partials
+
+h3 <a href="http://harpjs.com/docs/development/layout">Layout</a>
+
+p.
+    Most of the time you will want to create a layout which would be applied to all the page you create. In Harp you can do this by creating at the root of you project a <code>_layout.jade</code> (again it could be _layout.ejs if you prefer) file in which the only requirement is to have a <code>yield</code> property output
+
+pre.
+    echo "h1 Layout header
+
+    != yield" > _layout.jade
+
+p.
+    See how <code>index.jade</code> now inherits from <code>_layout.jade</code>. Obivously this layout file will be far more "complex", but the idea is precisely to delegate all the layout complexity to this 1 file, and keep the other plain simple.
+
+h3 <a href="http://harpjs.com/docs/development/partial">Partials</a>
+
+p.
+    Partials are files which can be included in other files by simply calling the <code>partial()</code> method. You typically use partial for being able to be able to reuse chunks of html in different places, or simply to keep you layout or calling file clean and organised. I use partial for storing <a href="http://disqus.com/">disqus's</a> html/js code and google analytics's tag. Best practice from Harp says that those files should (can) be stored in a <code>_shared/</code> directory.
+
+pre.
+    mkdir _shared
+    echo "small copyright note..." > _shared/copyright.jade
+    echo "!= partial(\"_shared/copyright\")" >> _layout.jade
+
+p.
+    You can passe objects (variables) to your <code>partials partial("_shared/copyright", { "year": 2013 })</code>
+
+h2 Variables (globals, current, metadata)
+
+p.
+    Because all this is built on top of nodejs, we have the possibility to define and/or access different types of variables.
+
+h3 <a href="http://harpjs.com/docs/development/globals">Globals</a>
+
+p.
+    Global variables can be accessed... globally through out your project. Use it to define you site title, your base url etc... They are defined in json format in a reserved file <code>harp.json</code> stored at the root of your project :
+pre.
+    # /harp.json
+    {
+        "globals": {
+            "title": "Acme Site",
+            "name": "John Doe",
+            "uri": "http://example.com"
+        }
+    }
+
+p(class="warning").
+    What I discovered when staring to work with globals, is that Harp expects all the files to be stored in a <code>public/</code> directory if a harp.json exists, otherwise keep your files at the root of your project.
+ul
+    li Without harp.json file
+        pre.
+            $ tree
+            .
+            ├── index.jade
+            └── _layout.jade
+    li With harp.json file
+        pre.
+            $ tree
+            .
+            ├── harp.json
+            └── public
+                ├── index.jade
+                └── _layout.jade
+
+p.
+    Now you have access anywhere in your files being servered by Harp to the variable <code>title</code> for instance :
+
+pre.
+    # accessible through http://localhost:9000/variable
+    echo "h2 #{ title }" > public/variable.jade
+
+h3 <a href="http://harpjs.com/docs/development/current">Current</a>
+
+p.
+    Harp also provides a <code>current</code> object holding the current <code>path</code> and <code>source</code>. See the official documentation, it is very well explained. This is useful when constructing navigation toolbar for example, where you usually want the current page to be highlighted in the menu.
+
+h3 <a href="http://harpjs.com/docs/development/metadata">Metadata</a>
+
+p.
+    Apart from the special <code>harp.json</code> file living the your root directory, Harp also allows you to stored "metadata" variable which should be stored in <code>_data.json</code> files in the directory where you will want to access those metadata. The typical example exposed in their example is a list of "slugs" for different articles published, together with a publishing date and article name. These objects are then used to create a "semi-dynamic" list of article titles with a link to each of them.
+
+p.
+    I'm personally using it for listing my blog posts. And I'm thinking of extending its use to create a page of 2nd hand items I would like to sell. It could also be a nice way to create an image gallery maybe.
+
+h2 Stylesheets
+
+p.
+    Not only does Harp compile .jade, .ejs or .md files, it also compiles .less and .stylus files making it a breeze to update your stylesheets. Let's improve our layout file, use bootstrap for styling it, and try to customize a wee bit the default design obtained.
+h3 Bower
+
+p.
+    While this is completely unrelated to this post, I try to use <a href="http://bower.io/">bower</a> for keeping my assets versions nice and clean.
+pre.
+    echo "{}" > package.json
+    npm install bower --save
+    echo "{\"directory\": \"vendor\"}" > .bowerrc
+    echo "{\"name\": \"test\"}" > bower.json
+    bower install bootstrap --save
+
+h3 Customize stylesheet with LESS
+
+p.
+    So that we have bootstrap source code in a <code>~/vendor/</code> directory, we can go ahead and update our layout file (this is a strict translation of <a href="http://getbootstrap.com/examples/starter-template/">Bootstrap starter template</a> to jade only with the extra <code>!= yield</code> call for harp to show our added content :
+
+pre.
+    # ~/public/_layout.jade
+    !!!
+    html
+        head
+            meta(charset="utf-8")
+            meta(name="viewport", content="width=device-width, initial-scale=1.0")
+            meta(name="description", content="")
+            meta(name="author", content="")
+            title Starter Template for Bootstrap
+            link(rel="stylesheet", type="text/css", href="/css/main.css")
+        body
+            div(class="navbar navbar-inverse navbar-fixed-top")
+                div.container
+                    div.navbar-header
+                        button(class="navbar-toggle", type="button", data-toggle="collapse", data-target=".navbar-collapse")
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href="/") Project name
+                    div(class="collapse navbar-collapse")
+                        ul(class="nav navbar-nav")
+                            li(class="active")
+                                a(href="#") Home
+                            li
+                                a(href="#about") About
+                            li
+                                a(href="#contact") Contact
+            div.container
+                div.starter-template
+                    h1 Bootstrap starter template
+                    p.lead
+                        | Use this document as a way to quickly start any new project.<br>
+                        | All you get is this text and a mostly barebones HTML document.
+                    != yield
+
+p.
+    And now we can create our main stylesheet file <code>~/public/css/main.less</code> and start overriding bootstrap <code>@body-bg</code> value :
+
+pre.
+    mkdir public/css
+    echo "@import \"../../vendor/bootstrap/less/bootstrap.less\";
+        @body-bg: yellow;
+        body {
+          padding-top: 50px;
+        }
+        .starter-template {
+          padding: 40px 15px;
+          text-align: center;
+        }" > public/css/main.less
+
+p.
+    Harp takes care of compiling your less file(s) and dump all of its content in the <code>/css/main.css</code> referenced in our layout!
+
+h2 Wrap up
+
+p.
+    I've only started playing with Harp and this is a small guide on how I got started. I would be happy to hear about other people's experience with it, but so far I'm liking it a lot. It is simple and light and I think I may have found my solution for being able to post a bit more.
+
+p.
+    What's next? I'll explain how I used Harp as a "pseudo" blog engine. One thing I still haven't had time to tackle yet is RSS feed and sitemap generation. Maybe there is a good opportunity here for the creators of Harp (or its community if they manage to create one) to create a repository of partials/mixins for solving these common issues.
