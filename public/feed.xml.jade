@@ -1,0 +1,17 @@
+doctype xml
+rss(version="2.0")
+    channel
+        title #{ site_name }
+        link #{ site_url }
+        description #{ site_description }
+        language en
+        for post, slug in public.posts.data
+            if post.ispublished
+                item
+                    title #{ post.title }
+                    description #{ post.excerpt }
+                    link #{ site_url }/posts/#{ slug }.html
+                    guid(isPermaLink="true") #{ site_url }/posts/#{ slug }.html
+                    pubDate
+                        = new Date(post.date).toUTCString()
+          <source url="http://www.rssFeedFolder.com/">rssFeedFolder.com</source>

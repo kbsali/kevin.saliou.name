@@ -1,31 +1,37 @@
 {
     "2013-10-12-getting-started-with-harp": {
         "title": "Starting up with Harp",
+        "excerpt": "Introduction to harps.js. Describes how to install and basic usage of the tool",
         "date": "Oct 12, 2013",
         "ispublished": true
     },
     "2013-10-11-getting-started-with-jade": {
         "title": "Starting up with Jade",
+        "excerpt": "Covers the very basics of Javascript templating language Jade",
         "date": "Oct 11, 2013",
         "ispublished": true
     },
     "2013-10-08-looking-for-the-static-site-generator": {
         "title": "Looking for The static site generator",
+        "excerpt": "Trying to decide which static site generator solution to use for builing my personal web site",
         "date": "Oct 08, 2013",
         "ispublished": true
     },
     "2013-10-01-geojson-carburantes": {
         "title": "Petrol stations' prices",
+        "excerpt": "Introduction to a small project I work on to open Spain's pretrol prices data",
         "date": "Oct 01, 2013",
         "ispublished": false
     },
     "2012-09-27-install-redmine-2-1-0-on-debian-6-0": {
         "title": "Install Redmine 2.1.0 on Debian 6.0",
+        "excerpt": "How to install Redmine on a Debian server",
         "date": "Sep 27, 2012",
         "ispublished": true
     },
     "2012-09-01-samsung-galaxy-nexus-411-upgrade": {
         "title": "Samsung Galaxy Nexus 4.1.1 upgrade",
+        "excerpt": "How to upgrade the Samsung Galaxy Nexus smartphone to Android 4.1.1 stock mod",
         "date": "Sep 01, 2012",
         "ispublished": true
     }
