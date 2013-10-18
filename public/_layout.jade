@@ -15,7 +15,8 @@ html
         title #{ title } | #{ site_name }
 
         link(rel="stylesheet", href="/css/main.css")
-        link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")
+        //- link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")
+        //- link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")
         link(rel="author", href="https://plus.google.com/#{ gplus }")
         //[if lt IE 9]
         script(src="/vendor/bootstrap/assets/js/html5shiv.js")
@@ -62,7 +63,7 @@ html
                             for post, slug in public.posts.data
                                 if post.ispublished
                                     li
-                                        a(href="/posts/#{ slug }", class="#{ current.source == slug ? 'active' : '' }")=post.title
+                                        a(href="/posts/#{ slug }.html", class="#{ current.source == slug ? 'active' : '' }")=post.title
             if disqus_enabled
                 .container
                     != partial("_partials/disqus")
