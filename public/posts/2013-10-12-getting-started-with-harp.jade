@@ -42,7 +42,7 @@ p.
 h3 <a href="http://harpjs.com/docs/development/partial">Partials</a>
 
 p.
-    Partials are files which can be included in other files by simply calling the <code>partial()</code> method. You typically use partial for being able to be able to reuse chunks of html in different places, or simply to keep you layout or calling file clean and organised. I use partial for storing <a href="http://disqus.com/">disqus's</a> html/js code and google analytics's tag. Best practice from Harp says that those files should (can) be stored in a <code>_shared/</code> directory.
+    Partials are files which can be included in other files by simply calling the <code>partial()</code> method. You typically use partial for being able to be able to reuse chunks of html in different places, or simply to keep you layout or calling file clean and organised. I use partial for storing <a href="http://disqus.com/">disqus's</a> html/js code and google analytics's tag. Best practice from Harp says that those files should (can) be stored in a <code>_shared/</code> directory. Directory names starting with <code>_</code> will be ignored by Harp (also when using calling <code>harp compile</code>).
 
 pre.
     mkdir _shared

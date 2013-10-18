@@ -18,8 +18,8 @@ html
         link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")
         link(rel="author", href="https://plus.google.com/#{ gplus }")
         //[if lt IE 9]
-        script(src="/vendor/assets/js/html5shiv.js")
-        script(src="/vendor/assets/js/respond.min.js")
+        script(src="/vendor/bootstrap-3.0.0/assets/js/html5shiv.js")
+        script(src="/vendor/bootstrap-3.0.0/assets/js/respond.min.js")
         //[endif]
     body
         #wrap
@@ -65,7 +65,7 @@ html
                                         a(href="/posts/#{ slug }", class="#{ current.source == slug ? 'active' : '' }")=post.title
             if disqus_enabled
                 .container
-                    != partial("partials/disqus")
+                    != partial("_partials/disqus")
 
         // #footer
         //     .container
