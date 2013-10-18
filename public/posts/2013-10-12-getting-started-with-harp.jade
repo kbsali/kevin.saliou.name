@@ -1,4 +1,4 @@
-h1 Starting up with Harp
+h1 #{ title } <small>#{ date }</small>
 
 p.
     The obvious place to check when starting up with another new tool is its <a href="http://harpjs.com/docs/">documentation page</a>. Harp has a pretty good set of documentation, but in many ways it could be improved. What I normally enjoy when starting up with frameworks of some sort is to have a real-case tutorial example explained.
@@ -182,6 +182,18 @@ pre.
 
 p.
     Harp takes care of compiling your less file(s) and dump all of its content in the <code>/css/main.css</code> referenced in our layout!
+
+p.
+    We are now ready to compile our project so it is ready to deploy on a static web server.
+
+pre.
+    $ harp compile
+    $ tree www/
+    www/
+    ├── css
+    │   └── main.css
+    ├── index.html
+    └── variable.html
 
 h2 Wrap up
 

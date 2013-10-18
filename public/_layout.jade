@@ -60,8 +60,9 @@ html
                     div(class="well sidebar-nav")
                         ul.nav
                             for post, slug in public.posts.data
-                                li
-                                    a(href="/posts/#{ slug }", class="#{ current.source == slug ? 'active' : '' }")=post.title
+                                if post.ispublished
+                                    li
+                                        a(href="/posts/#{ slug }", class="#{ current.source == slug ? 'active' : '' }")=post.title
             if disqus_enabled
                 .container
                     != partial("partials/disqus")
