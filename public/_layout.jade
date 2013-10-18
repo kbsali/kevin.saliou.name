@@ -69,6 +69,8 @@ html
             if disqus_enabled
                 .container
                     != partial("_partials/disqus")
+            if ua_id
+                != partial("_partials/ga")
 
         //- #footer
         //-     .container
