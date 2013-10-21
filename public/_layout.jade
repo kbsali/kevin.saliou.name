@@ -34,7 +34,7 @@ html(lang="#{ site_language }")
             .site
                 //- section(class="about-me" itemscope itemtype="http://data-vocabulary.org/Person")
                 if current.path == 'index' && current.source == 'index'
-                    section(class="about-me", itemscope, itemtype="http://data-vocabulary.org/Person")
+                    section(id="about-me", itemscope, itemtype="http://data-vocabulary.org/Person")
                         != yield
                     //- if current.path == 'index'
                     != partial("_partials/aside")

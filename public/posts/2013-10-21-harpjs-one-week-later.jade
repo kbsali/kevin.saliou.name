@@ -15,11 +15,8 @@ h3 Hickup #1 : Font-Awesome
 p.
     When using <a href="http://fortawesome.github.io/Font-Awesome/get-started/#custom-less">Font-Awesome</a> "like a PRO" (that is using LESS), you need to define the <code>@FontAwesomePath</code> variable.
 
-pre(class="terminal").
-    bower install font-awesome --save
-
 pre.
-    # ~public/css/main.less
+    # ~/public/css/main.less
     @import "../../vendor/font-awesome/less/font-awesome.less";
     @FontAwesomePath: "../font";
     @import "../../vendor/bootstrap/less/bootstrap.less";
@@ -29,7 +26,7 @@ p.
     Unfortunately this does not play well when running <code>harp server</code> and even worth when compiling your project. Why? Simply because the <code>vendor/</code> directory is Not in the <code>public/</code> directory - and that is correct that way, we do not want all the assets sources to be publicly available - therefore the font files (*.woff, *.ttf, *.svg) are not available publicly. The only solution I could think of was to refer to the absolute url of the font directory :
 
 pre.
-    # ~public/css/main.less
+    # ~/public/css/main.less
     @import "../../vendor/font-awesome/less/font-awesome.less";
     @FontAwesomePath: "http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font";
     @import "../../vendor/bootstrap/less/bootstrap.less";
@@ -40,7 +37,7 @@ h3 Hickup #2 : Sitemap generation
 p.
     When working on web projects in general, I always try to put all the chances on my side to get good visibility on search engine. One way to do so easily is by generating a <a href="http://www.sitemaps.org/">sitemap.xml</a> of your site. For this issue I still haven't found any solution. I think there should be a global object available throughout the project which holds a complete list of public slugs. I have reported this in <a href="https://github.com/sintaxi/harp/issues/131">github</a> and there seem to be an easy solution to that.
 
-h3 Hickup #2 : Concatenate JS
+h3 Hickup #3 : Concatenate JS
 
 p.
     When using LESS for handling the stylesheets of a harp project, it automatically compiles and concatenate all the CSS and LESS files imported in your <code>main.less</code> file. This is great! But right now there is no way to do just the same for JS/Coffeescript files. This too has been <a href="https://github.com/sintaxi/harp/issues/127">reported</a> and I'm really looking forward to getting it solved. This would be great when using Bower!
@@ -54,6 +51,8 @@ h3 Less / Jade
 
 p.
     Although this is not directly linked to Harp, I still want to point out how great LESS and Jade work together with Harp! I'm all new to these 2 solutions, but I already feel like they are making me save a lot of time when designing my styles and templates. I stumbled upon a very nice and lean design the other day : <a href="http://sebastien.saunier.me/">http://sebastien.saunier.me/</a> and I decided that this was exactly what I was looking for. I took me 1 hour or so to convert my old layout to this new one (including moving from the original CSS to its much more flexible LESS version).
+    small.
+        I just found and tried <a href="https://github.com/donpark/html2jade">html2jade</a> and it works great!
 p.
     While converting Sébastien's layout to Jade, I tried as much as possible to move all the personal related data to <code>harp.json</code> making the layout very flexible and easy to use for other projects / persons. Here is what it looks like as of today :
 
@@ -90,40 +89,42 @@ h4 Blog engine / RSS feed
 p.
     For this project, one of my goal was to be able to publish posts on a regular basis, just like blog engines do! Using <a href="http://harpjs.com/docs/development/metadata">Metadata</a> as described in the documentation, you can easily get this done. I use pretty much the same <code>_data.json</code> structure, but I have added a few more fields :
 
-    pre.
-        {
-        "2013-10-21-harpjs-one-week-later": {
-            "title": "Harpjs one week later",
-            "excerpt": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
-            "date": "Oct 21, 2013",
-            "ispublished": true
-        },
-        ...
+pre.
+    {
+    "2013-10-21-harpjs-one-week-later": {
+        "title": "Harpjs one week later",
+        "excerpt": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
+        "date": "Oct 21, 2013",
+        "ispublished": true
+    },
+    ...
 
+p.
     The <code>ispublished</code> variable allows, you guessed it, to control whether a post should be listed in the posts' lists page or not. Likewise, the <code>excerpt</code> is simply used to show a short intro of the post itself.
 
 p.
     Syndication of post is a pretty basic feature of any decent blog engine. With Harp.js I was able to do this very easily. The only "trick" was to disable the layout for this file and find a way to convert the post date to RFC-1123 - which is the standard date format for RSS feeds :
 
-pre.
-    # ~/public/feed.xml.jade
-    doctype xml
-    rss(version="2.0")
-        channel
-            title #{ site_name }
-            link #{ site_url }
-            description #{ site_description }
-            language en
-            for post, slug in public.posts.data
-                if post.ispublished
-                    item
-                        title #{ post.title }
-                        description #{ post.excerpt }
-                        link #{ site_url }/posts/#{ slug }.html
-                        guid(isPermaLink="true") #{ site_url }/posts/#{ slug }.html
-                        pubDate
-                            = new Date(post.date).toUTCString()
-              <source url="http://www.rssFeedFolder.com/">rssFeedFolder.com</source>
+pre
+    | # ~/public/feed.xml.jade
+    | doctype xml
+    | rss(version="2.0")
+    |     channel
+    |         title #{ site_name }
+    |       link #{ site_url }
+    |       description #{ site_description }
+    |       language en
+    |       for post, slug in public.posts.data
+    |           if post.ispublished
+    |               item
+    |                   title \#{ post.title }
+    |                   description \#{ post.excerpt }
+    |                   link \#{ site_url }/posts/\#{ slug }.html
+    |                   guid(isPermaLink="true") \#{ site_url }/posts/\#{ slug }.html
+    |                   pubDate
+    |                       = new Date(post.date).toUTCString()
+
+br
 
 pre.
     # ~/public/_data.json
