@@ -28,15 +28,14 @@ html(lang="#{ site_language }")
                     a(href="/") #{ site_name }
                 div(class="heady cell right")
                     nav
-                        a(href="/", class="#{ current.path == 'index' ? 'selected' : '' }") about
-                        a(href="/posts", class="#{ current.path != 'index' ? 'selected' : '' }") posts
+                        a(href="/about", class="#{ current.path == 'about' ? 'selected' : '' }") about
+                        a(href="/", class="#{ current.path != 'about' ? 'selected' : '' }") posts
         .container
             .site
                 //- section(class="about-me" itemscope itemtype="http://data-vocabulary.org/Person")
-                if current.path == 'index' && current.source == 'index'
+                if current.path == 'about' && current.source == 'about'
                     section(id="about-me", itemscope, itemtype="http://data-vocabulary.org/Person")
                         != yield
-                    //- if current.path == 'index'
                     != partial("_partials/aside")
                 else
                     if current.source == 'index'
