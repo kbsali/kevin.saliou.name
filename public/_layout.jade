@@ -1,0 +1,61 @@
+!!!
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(name="description", content="")
+        meta(name="author", content="#{ author_name }")
+        meta(name="keywords", content="#{ site_keywords }")
+        meta(property="og:title", content="#{ title } | #{ site_name }")
+        meta(property="og:type", content="website")
+        meta(property="og:description", content="#{ site_description }")
+        meta(property="og:site_name", content="#{ title } | #{ site_name }")
+        meta(property="og:url", content="#{ site_url }")
+
+        title #{ title } | #{ site_name }
+
+        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans:700,400|Titillium+Web:700,400")
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="author", href="https://plus.google.com/#{ gplus }")
+        link(rel="alternate", type="application/rss+xml", title="RSS feed #{ site_name }'s feed", href="/feed.xml")
+    body
+        .container
+            header
+                div(class="heady logo cell")
+                    a(href="/") Kevin Saliou
+                div(class="heady cell right")
+                    nav
+                        a(href="/", class="#{ current.path == 'index' ? 'selected' : '' }") about
+                        a(href="/posts", class="#{ current.path == 'index' ? '' : 'selected' }") posts
+        .container
+            .site
+                //- section(class="about-me" itemscope itemtype="http://data-vocabulary.org/Person")
+                if current.path == 'index' && current.source == 'index'
+                    section(class="about-me", itemscope, itemtype="http://data-vocabulary.org/Person")
+                        != yield
+                    //- if current.path == 'index'
+                    != partial("_partials/aside")
+                else
+                    if current.source == 'index'
+                        section
+                            != yield
+                    else
+                        article.post
+                            != yield
+                            != partial("_partials/disqus")
+
+        .clear
+        footer
+            p Powered by <a href="https://harpjs.org">Harp.js</a>, <a href="jade-lang.com">jade</a> and <a href="lesscss.org">Less</a>. Template by sebastien.saunier.me
+            ul.links
+                li
+                    a(href="https://github.com/#{ github }")
+                        i(class="icon-github")
+                li
+                    a(href="http://www.linkedin.com/in/#{ linkedin }")
+                        i(class="icon-linkedin")
+                li
+                    a(href="https://twitter.com/#{ twitter }")
+                        i(class="icon-twitter")
+        if ua_id
+            != partial("_partials/ga")

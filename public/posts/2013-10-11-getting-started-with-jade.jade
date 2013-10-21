@@ -1,4 +1,6 @@
-h1 #{ title } <small>#{ date }</small>
+h1 #{ title }
+
+p.meta #{ date }
 
 p.
     So as mentioned <a href="/posts/2013-10-08-looking-for-the-static-site-generator.html">earlier</a>, I have decided to use <a href="http://harpjs.com/">Harpjs</a> for handling my publishing.
@@ -6,7 +8,7 @@ p.
 h2 Getting to know Jade
 
 p.
-    While Harp is pretty flexible at interpreting different file format, I had to choose between <a href="http://embeddedjs.com/">ejs</a> and <a href="http://jade-lang.com/">Jade</a> for handling the <a href="http://harpjs.com/docs/development/layout">layout</a> of my site. I decided to go for Jade as its syntax looked nice and clean, and even reminded me Python which I'm in the process of learning. I found it very easy to pick up (specially if you know html well) and its <a href="http://jade-lang.com/reference/>reference page</a> should be enough to get you started. There are some details which are not obvious, and I specially don't like the fact that tags declared within another tag (say a link within a paragraph) have to be written in raw html (or am I doing it wrong?).
+    While Harp is pretty flexible at interpreting different file format, I had to choose between <a href="http://embeddedjs.com/">ejs</a> and <a href="http://jade-lang.com/">Jade</a> for handling the <a href="http://harpjs.com/docs/development/layout">layout</a> of my site. I decided to go for Jade as its syntax looked nice and clean, and even reminded me Python which I'm in the process of learning. I found it very easy to pick up (specially if you know html well) and its <a href="http://jade-lang.com/reference/">reference page</a> should be enough to get you started. There are some details which are not obvious, and I specially don't like the fact that tags declared within another tag (say a link within a paragraph) have to be written in raw html (or am I doing it wrong?).
 
 p.
     My first task was then to find a template which siuts my needs, and because I'm pretty familiar with <a href="http://getbootstrap.com/">Bootstrap</a>, I went ahead and converted the <a href"http://getbootstrap.com/examples/sticky-footer-navbar">Sticky footer with fixed navbar</a> example they provide which looks like this :

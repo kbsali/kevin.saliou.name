@@ -1,4 +1,6 @@
-h1 #{ title } <small>#{ date }</small>
+h1 #{ title }
+
+p.meta #{ date }
 
 p.
     The obvious place to check when starting up with another new tool is its <a href="http://harpjs.com/docs/">documentation page</a>. Harp has a pretty good set of documentation, but in many ways it could be improved. What I normally enjoy when starting up with frameworks of some sort is to have a real-case tutorial example explained.
@@ -7,7 +9,7 @@ h2 Install & Run
 
 p.
     As describe in the <a href="http://harpjs.com/docs/quick-start">quick-start</a> guide, starting with harps is as simple as executing the following :
-pre.
+pre(class="terminal").
     sudo npm install harp -g
     mkdir hello-world
     cd hello-world
@@ -21,7 +23,7 @@ h3 Deploy or Freeze!
 p.
     Harp requires <a href="http://nodejs.org/">nodejs</a> to be installed, and nowadays it's not very common to find cheap or free solutions for hosting nodejs applications. Your concern might even be that you just prefer to serve stupid static files with solutions optimized for that (Nginx, G-WAN, etc...). Anyway, Harp allows you to compile your project to pure html and saves all the generated files in a <code>www/</code> folder at the root of your project ready to be uploaded to your server.
 
-pre.
+pre(class="terminal").
     harp compile
 
 h2 Layout & Partials
@@ -31,7 +33,7 @@ h3 <a href="http://harpjs.com/docs/development/layout">Layout</a>
 p.
     Most of the time you will want to create a layout which would be applied to all the page you create. In Harp you can do this by creating at the root of you project a <code>_layout.jade</code> (again it could be _layout.ejs if you prefer) file in which the only requirement is to have a <code>yield</code> property output
 
-pre.
+pre(class="terminal").
     echo "h1 Layout header
 
     != yield" > _layout.jade
@@ -44,7 +46,7 @@ h3 <a href="http://harpjs.com/docs/development/partial">Partials</a>
 p.
     Partials are files which can be included in other files by simply calling the <code>partial()</code> method. You typically use partial for being able to be able to reuse chunks of html in different places, or simply to keep you layout or calling file clean and organised. I use partial for storing <a href="http://disqus.com/">disqus's</a> html/js code and google analytics's tag. Best practice from Harp says that those files should (can) be stored in a <code>_shared/</code> directory. Directory names starting with <code>_</code> will be ignored by Harp (also when using calling <code>harp compile</code>).
 
-pre.
+pre(class="terminal").
     mkdir _shared
     echo "small copyright note..." > _shared/copyright.jade
     echo "!= partial(\"_shared/copyright\")" >> _layout.jade
@@ -75,13 +77,13 @@ p(class="warning").
     What I discovered when staring to work with globals, is that Harp expects all the files to be stored in a <code>public/</code> directory if a harp.json exists, otherwise keep your files at the root of your project.
 ul
     li Without harp.json file
-        pre.
+        pre(class="terminal").
             $ tree
             .
             ├── index.jade
             └── _layout.jade
     li With harp.json file
-        pre.
+        pre(class="terminal").
             $ tree
             .
             ├── harp.json
@@ -92,7 +94,7 @@ ul
 p.
     Now you have access anywhere in your files being servered by Harp to the variable <code>title</code> for instance :
 
-pre.
+pre(class="terminal").
     # accessible through http://localhost:9000/variable
     echo "h2 #{ title }" > public/variable.jade
 
@@ -117,7 +119,7 @@ h3 Bower
 
 p.
     While this is completely unrelated to this post, I try to use <a href="http://bower.io/">bower</a> for keeping my assets versions nice and clean.
-pre.
+pre(class="terminal").
     echo "{}" > package.json
     npm install bower --save
     echo "{\"directory\": \"vendor\"}" > .bowerrc
@@ -168,7 +170,7 @@ pre.
 p.
     And now we can create our main stylesheet file <code>~/public/css/main.less</code> and start overriding bootstrap <code>@body-bg</code> value :
 
-pre.
+pre(class="terminal").
     mkdir public/css
     echo "@import \"../../vendor/bootstrap/less/bootstrap.less\";
         @body-bg: yellow;
@@ -186,7 +188,7 @@ p.
 p.
     We are now ready to compile our project so it is ready to deploy on a static web server.
 
-pre.
+pre(class="terminal").
     $ harp compile
     $ tree www/
     www/

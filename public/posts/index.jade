@@ -1,3 +1,10 @@
-for post, slug in public.posts.data
-    li
-        a(href="/posts/#{ slug }")=post.excerpt
+ul.posts
+    for post, slug in public.posts.data
+        //- li
+        //-     a(href="/posts/#{ slug }")=post.excerpt
+        li
+            h2
+                a(href="/posts/#{ slug }")=post.title
+            p
+                span.date #{ post.date }
+                span.description #{ post.excerpt }

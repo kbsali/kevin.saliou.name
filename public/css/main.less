@@ -1,0 +1,300 @@
+@import url('reset.css');
+@import url('syntax.css');
+@import url('icomoon.css');
+
+@brand-primary: #3073b3;
+@body-bg: #fff;
+@text-color: #545454;
+@spacer-color: #E6e6e6;
+@header-color: #1c1c1c;
+@pre-bg: whitesmoke;
+@pre-border: #eee;
+@terminal-bg: #333;
+@terminal-border: #000;
+@terminal-color: @body-bg;
+@link-color: #3073b3;
+@footer-color: #858585;
+@meta-color: #666;
+@font-family-sans-serif: Helvetica,Arial,sans-serif;
+@font-family-sans-serif-fancy: "Titillium Web",Helvetica,Arial,sans-serif;
+@font-family-sans-serif-date: "Titillium Web",monospace;
+@font-header: "Open Sans",sans-serif;
+
+html, body {
+    height: 100%;
+}
+body {
+    border-top: 5px solid @brand-primary;
+    color: @text-color;
+    text-align: center;
+    font-family: @font-family-sans-serif;
+    text-rendering: optimizeLegibility;
+}
+h1, h2, h3 {
+    font-family: @font-header;
+    font-weight: 400;
+    color: @header-color;
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    line-height: 1.2em;
+}
+h1 {
+    font-size: 1.8em;
+    line-height: 1.8em;
+}
+p {
+    margin: 1em 0;
+}
+table {
+    font-size: inherit;
+    font: 100%;
+}
+li {
+    margin-left: 2em;
+}
+a, a:active {
+    text-decoration: none;
+    color: @link-color;
+}
+a:visited {
+    color: @link-color;
+}
+a:hover {
+    text-decoration: underline;
+}
+.container {
+    padding: 0 1em;
+}
+.fancy, section, article {
+    font-family: @font-family-sans-serif-fancy;
+    line-height: 170%;
+}
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
+.clear {
+    clear: both;
+}
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+.spacer {
+    border-top: 1px solid @spacer-color;
+    margin: 3em auto;
+}
+.without-border {
+    border: none;
+}
+@media (max-width:480px) {
+    section, article {
+        text-align: left;
+    }
+}
+header {
+    margin: auto;
+    max-width: 800px;
+    text-align: left;
+    display: table;
+    width: 100%;
+}
+strong {
+    font-weight: bold;
+}
+.heady {
+    font-family: @font-header;
+    font-weight: bold;
+    padding: 1.6em 0;
+}
+.cell {
+    display: table-cell;
+}
+header {
+    .logo a, .logo a:hover {
+        color: black;
+        text-decoration: none;
+    }
+}
+@media (max-width:479px) {
+    .cell {
+        display: block;
+    }
+    .heady {
+        text-align: left;
+        padding: 0.6em 0;
+    }
+}
+nav a {
+    display: inline-block;
+    margin-right: 1.2em;
+    padding-bottom: 0.2em;
+    text-transform: uppercase;
+    font-size: small;
+    :hover {
+        text-decoration: none;
+    }
+    .selected {
+        border-bottom: 3px solid @link-color;
+    }
+}
+.avatar {
+    border-radius: 50%;
+    width: 80%;
+    max-width: 120px;
+}
+aside .links {
+    font-size: 1em;
+    padding-top: 1em;
+    li {
+        margin-top: 0.3em;
+    }
+}
+.links {
+    border-top: 1px solid @spacer-color;
+    margin: 1em 0;
+    padding-top: 0.2em;
+    list-style-type: none;
+    font-size: 1.2em;
+    li {
+        margin-left: 0;
+        padding: 0.2em 0;
+    }
+}
+.about-me {
+    h1 {
+        margin-top: 0;
+    }
+    .speak-french {
+        line-height: 3.8em;
+    }
+}
+@media (min-width:481px) {
+    .about-me {
+        width: 70%;
+        float: left;
+    }
+    .about-me + aside {
+        width: 25%;
+        float: right;
+    }
+}
+footer {
+    font-size: small;
+    color: @footer-color;
+    border-top: 1px solid @spacer-color;
+    margin-top: 2em;
+    line-height: 2em;
+    padding: 2em 1em;
+    text-align: center;
+    p {
+        margin: 0;
+        .links {
+            border: none;
+            li {
+                display: inline;
+                padding: 0 0.2em;
+            }
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+ul.posts {
+    list-style-type: none;
+    margin-bottom: 2em;
+    li {
+        line-height: 1.4em;
+        margin-bottom: 3em;
+    }
+    .date {
+        color: #999;
+        font-family: @font-family-sans-serif-date;
+        font-size: 90%;
+        margin-right: 0.5em;
+    }
+}
+.container {
+    border-top: 1px solid @spacer-color;
+}
+.site {
+    text-align: justify;
+    max-width: 800px;
+    margin: 3em auto 1em;
+    line-height: 1.5em;
+    .header {
+        a {
+            font-weight: bold;
+            text-decoration: none;
+        }
+        h1.title {
+            display: inline-block;
+            margin-bottom: 2em;
+            a {
+                color: #a00;
+            }
+            a:hover {
+                color: #000;
+            }
+        }
+    }
+    .meta {
+        color: @meta-color;
+    }
+}
+.convinced {
+    margin: 6em 0 4em 0;
+}
+.post {
+    pre {
+        border: 1px solid @pre-border;
+        background-color: @pre-bg;
+        padding: 0 .4em;
+        code {
+            border: none;
+        }
+    }
+    pre.terminal {
+        border: 1px solid @terminal-border;
+        background-color: @terminal-bg;
+        color: @terminal-color;
+        code {
+            background-color: @terminal-bg;
+        }
+    }
+    ul, ol {
+        margin-left: 1.35em;
+    }
+    code {
+        border: 1px solid @pre-border;
+        background-color: @pre-bg;
+        padding: 0 .2em;
+    }
+}
+blockquote {
+    margin: 1em 3em;
+    color: @footer-color;
+    border-left: 4px solid @link-color;
+    padding-left: 1em;
+}
+.post-footer {
+    margin: 3em 0;
+    padding-top: 0.5em;
+    border-top: 2px solid @link-color;
+    float: left;
+}
+img {
+    max-width: 100%;
+    .inline.pull-right {
+        margin-left: 1em;
+    }
+}
+.gist {
+    font-size: 0.8em !important;
+    line-height: 140% !important;
+}
