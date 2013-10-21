@@ -2,22 +2,23 @@
 @import url('syntax.css');
 @import url('icomoon.css');
 
-@brand-primary: #3073b3;
-@body-bg: #fff;
+// Variables
 @text-color: #545454;
-@spacer-color: #E6e6e6;
+@brand-primary: #3073b3;
+@footer-color: #858585;
 @header-color: #1c1c1c;
+@link-color: #3073b3;
+@meta-color: #666;
 @pre-bg: whitesmoke;
 @pre-border: #eee;
+@spacer-color: #E6e6e6;
 @terminal-bg: #333;
 @terminal-border: #000;
-@terminal-color: @body-bg;
-@link-color: #3073b3;
-@footer-color: #858585;
-@meta-color: #666;
-@font-family-sans-serif: Helvetica,Arial,sans-serif;
-@font-family-sans-serif-fancy: "Titillium Web",Helvetica,Arial,sans-serif;
+@terminal-color: #fff;
+
 @font-family-sans-serif-date: "Titillium Web",monospace;
+@font-family-sans-serif-fancy: "Titillium Web",Helvetica,Arial,sans-serif;
+@font-family-sans-serif: Helvetica,Arial,sans-serif;
 @font-header: "Open Sans",sans-serif;
 
 html, body {
@@ -193,15 +194,15 @@ footer {
     text-align: center;
     p {
         margin: 0;
-        .links {
-            border: none;
-            li {
-                display: inline;
-                padding: 0 0.2em;
-            }
-            a:hover {
-                text-decoration: none;
-            }
+    }
+    .links {
+        border: none;
+        li {
+            display: inline;
+            padding: 0 0.2em;
+        }
+        a:hover {
+            text-decoration: none;
         }
     }
 }
