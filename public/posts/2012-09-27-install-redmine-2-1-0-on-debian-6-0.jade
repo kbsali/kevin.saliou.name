@@ -1,0 +1,150 @@
+- site_description = excerpt
+- site_keywords = keywords
+h1 #{ title }
+
+p.meta #{ date }
+
+h2 Install necessary packages
+
+pre(class="terminal")
+    | aptitude update
+    | aptitude install ruby rubygems libruby libapache2-mod-passenger libmysqlclient-dev libmagickcore-dev libmagickwand-dev mysql-server
+
+h2 Install Not So necessary packages
+
+pre(class="terminal")
+    | aptitude install vim git
+
+h2 Download redmine + untar + move it
+
+pre(class="terminal")
+    | wget http://rubyforge.org/frs/download.php/76448/redmine-2.1.0.tar.gz
+    | tar xzvf redmine-2.1.0.tar.gz
+    | mv redmine-2.1.0 /usr/local/share/redmine-2.1.0
+    | ln -s /usr/local/share/redmine-2.1.0 /usr/local/share/redmine
+    | chown -R root:root /usr/local/share/redmine-2.1.0
+
+h2 Create a redmine user
+
+pre(class="terminal")
+    | adduser redmine
+
+h2 Ruby/Gem thingies...
+
+pre(class="terminal")
+    | gem install bundler
+    | cd /usr/local/share/redmine
+    | /var/lib/gems/1.8/bin/bundle install --without development test postgresql sqlite
+
+h2 DB setup
+
+pre(class="terminal")
+    | mysql -uroot -p -e "create database redmine character set utf8;create user 'redmine'@'localhost' identified by 'redmine_password';grant all privileges on redmine.* to 'redmine'@'localhost';"
+    | cp config/database.yml.example config/database.yml
+    | vi config/database.yml
+
+    | .. --- config/database.yml ---
+    | production:
+    |  adapter: mysql
+    |  database: redmine
+    |  host: localhost
+    |  username: redmine
+    |  password: redmine_password
+    | ..
+
+    | RAILS_ENV=production /var/lib/gems/1.8/bin/rake db:migrate
+    | RAILS_ENV=production /var/lib/gems/1.8/bin/rake redmine:load_default_data
+    | /var/lib/gems/1.8/bin/rake db:encrypt RAILS_ENV=production
+
+h2 Apache setup
+
+pre(class="terminal")
+    | echo '<VirtualHost *:80>
+    |  ServerName redmine.example.com
+    | DocumentRoot /usr/local/share/redmine/public
+    |   <Directory /usr/local/share/redmine/public>
+    |     AllowOverride all
+    |     Options -MultiViews
+    |   </Directory>
+    | </VirtualHost>' > /etc/apache2/sites-available/redmine.example.com
+    | a2ensite redmine.example.com
+    | a2dissite 000-default
+    | service apache2 restart
+
+h2 Email setup (through Gmail)
+
+pre(class="terminal")
+    | cp config/configuration.yml.example config/configuration.yml
+    | vi config/configuration.yml
+
+    | .. --- config/configuration.yml ---
+    | default:
+    | # Outgoing emails configuration (see examples above)
+    | email_delivery:
+    |  delivery_method: :smtp
+    |  smtp_settings:
+    |    enable_starttls_auto: true
+    |    address: "smtp.gmail.com"
+    |    port: 587
+    |    domain: "smtp.gmail.com"
+    |    authentication: :plain
+    |    user_name: "USERNAME@gmail.com"
+    |    password: "PASSWORD"
+    | ..
+
+p Visit http://redmine.example.com/settings/edit page and modify "Host name and path" value (so the links published in the emails are correct)
+
+h2 Git + Github integration
+
+pre(class="terminal")
+    | gem install json
+
+    | # This is how to install a plugin!
+    | cd plugins
+    | git clone https://github.com/koppen/redmine_github_hook.git
+    | RAILS_ENV=production /var/lib/gems/1.8/bin/rake redmine:plugins:migrate
+
+p Check http://redmine.example.com/admin/plugins
+
+p In case you do not have SSH keys...
+
+pre(class="terminal")
+    | ssh-keygen -t rsa -C "redmine@example.com"
+
+p Visit https://github.com/settings/ssh and add the newly generated public key (see https://help.github.com/articles/generating-ssh-keys)
+
+pre(class="terminal")
+    | su redmine
+    | mkdir /PATH/TO/REPOS
+    | cd /PATH/TO/REPOS
+    | git clone --mirror git@github.com:USER/project.git
+    | cd project.git
+    | git fetch -q --all
+    | echo '*/5 * * * * redmine cd /PATH/TO/REPOS/project.git && git fetch -q --all' > /etc/cron.d/sync_git_repos
+
+p Note : here you will have to configure you *ssh keys* :
+
+p Add the repo to Redmine : http://redmine.adticket.de/projects/elvis/settings?tab=repositories
+
+ul
+    li Now on github :
+      ul
+          li Visit https://github.com/USER/project/admin/hooks
+          li Add a new *WebHook URL* : redmine.example.com/github_hook (if your project ID in Redmine is NOT the same as the project name in github : redmine.example.com/github_hook?project_id=my_project)
+    li Access Redmine through http://redmine.example.com
+    li Default admin user is already created : admin:admin
+
+h2 References
+
+ul
+    li <a href="http://www.redmine.org/projects/redmine/wiki/HowTo_Install_Redmine_210_on_Debian_Squeeze_with_Apache_Passenger">HowTo Install Redmine 210 on Debian Squeeze with Apache Passenger</a>
+    li <a href="http://hodza.net/2012/03/15/howto-install-redmine-on-debian-6-squeeze-ruby-on-rails-apache2-passenger/">HowTo Install Latest Redmine on Debian 6 (Squeeze, Ruby-on-Rails, Apache2 Passenger)</a>
+    li <a href="http://www.redmine.org/projects/redmine/wiki/HowTo_keep_in_sync_your_git_repository_for_redmine">HowTo keep in sync your git repository for redmine</a>
+    li <a href="https://github.com/koppen/redmine_github_hook">Redmine Github Hook</a>
+
+p Done!
+
+h2 Updates
+
+ul
+    li [2012-10-02] replace cron + vhost setup from <code>vi XXX</code> to <code>echo 'YYY' > XXX</code> so a simple copy/paste is enough
