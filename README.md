@@ -9,6 +9,7 @@ Work In Progress!
 ## Test it yourself
 
     sudo npm install harp -g
+    cp harp.json.sample harp.json
     harp server
 
 Open up a browser to : [localhost:9000](http://localhost:9000)

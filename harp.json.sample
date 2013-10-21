@@ -1,0 +1,25 @@
+{
+    "globals": {
+        "site_language"   : "en",
+        "title"           : "Me myself and I",
+        "author_name"     : "John Do",
+        "author_picture"  : "/img/john_do.jpg",
+
+        "site_name"       : "John Do's life",
+        "site_description": "I'm John Do, do you really care?.",
+        "site_keywords"   : "John, Do, somewhere, somehow",
+        "site_url"        : "http://john.do.name",
+
+        "twitter"         : "johndo",
+        "github"          : "johndo",
+        "linkedin"        : "johndo",
+        "gplus"           : "11111111111",
+        "google_site_id"  : "111111-XXXXX",
+
+        "disqus_enabled"  : false,
+        "disqus_shortname": "johndo",
+
+        "addthis_id"      : "ra-1111111111",
+        "ua_id"           : "UA-111111-1"
+    }
+}
