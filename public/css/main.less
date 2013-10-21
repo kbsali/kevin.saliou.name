@@ -130,16 +130,18 @@ header {
         padding: 0.6em 0;
     }
 }
-nav a {
-    display: inline-block;
-    margin-right: 1.2em;
-    padding-bottom: 0.2em;
-    text-transform: uppercase;
-    font-size: small;
-    :hover {
+nav {
+    a {
+        display: inline-block;
+        margin-right: 1.2em;
+        padding-bottom: 0.2em;
+        text-transform: uppercase;
+        font-size: small;
+    }
+    a:hover {
         text-decoration: none;
     }
-    .selected {
+    a.selected {
         border-bottom: 3px solid @link-color;
     }
 }

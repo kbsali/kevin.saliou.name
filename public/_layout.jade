@@ -26,7 +26,7 @@ html
                 div(class="heady cell right")
                     nav
                         a(href="/", class="#{ current.path == 'index' ? 'selected' : '' }") about
-                        a(href="/posts", class="#{ current.path == 'index' ? '' : 'selected' }") posts
+                        a(href="/posts", class="#{ current.path != 'index' ? 'selected' : '' }") posts
         .container
             .site
                 //- section(class="about-me" itemscope itemtype="http://data-vocabulary.org/Person")
@@ -43,7 +43,6 @@ html
                         article.post
                             != yield
                             != partial("_partials/disqus")
-
         .clear
         footer
             p Powered by <a href="https://harpjs.org">Harp.js</a>, <a href="jade-lang.com">jade</a> and <a href="lesscss.org">Less</a>. Template by sebastien.saunier.me
