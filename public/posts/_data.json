@@ -2,42 +2,49 @@
     "2013-10-21-harpjs-one-week-later": {
         "title": "Harpjs one week later",
         "excerpt": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
+        "keywords": "harp.js javascript jade less partials metadata",
         "date": "Oct 21, 2013",
         "ispublished": true
     },
     "2013-10-12-getting-started-with-harp": {
         "title": "Starting up with Harp",
         "excerpt": "Introduction to harps.js. Describes how to install and basic usage of the tool",
+        "keywords": "harp.js, javascript, jade, less, introduction, tutorial",
         "date": "Oct 12, 2013",
         "ispublished": true
     },
     "2013-10-11-getting-started-with-jade": {
         "title": "Starting up with Jade",
         "excerpt": "Covers the very basics of Javascript templating language Jade",
+        "keywords": "javascript, jade, introduction, tutorial",
         "date": "Oct 11, 2013",
         "ispublished": true
     },
     "2013-10-08-looking-for-the-static-site-generator": {
         "title": "Looking for The static site generator",
         "excerpt": "Trying to decide which static site generator solution to use for builing my personal web site",
+        "keywords": "javascript, python, ruby, php, static site generator",
         "date": "Oct 08, 2013",
         "ispublished": true
     },
     "2013-10-01-geojson-carburantes": {
         "title": "Petrol stations' prices",
         "excerpt": "Introduction to a small project I work on to open Spain's pretrol prices data",
+        "keywords": "open data, pyhon, javascript, petrol station, csv",
         "date": "Oct 01, 2013",
         "ispublished": false
     },
     "2012-09-27-install-redmine-2-1-0-on-debian-6-0": {
         "title": "Install Redmine 2.1.0 on Debian 6.0",
         "excerpt": "How to install Redmine on a Debian server",
+        "keywords": "debian, redmine, bash, aptitude, yaml, configuration",
         "date": "Sep 27, 2012",
         "ispublished": true
     },
     "2012-09-01-samsung-galaxy-nexus-411-upgrade": {
         "title": "Samsung Galaxy Nexus 4.1.1 upgrade",
         "excerpt": "How to upgrade the Samsung Galaxy Nexus smartphone to Android 4.1.1 stock mod",
+        "keywords": "android, tutorial, flash, 4.1.1, samsung galaxy nexus",
         "date": "Sep 01, 2012",
         "ispublished": true
     }
