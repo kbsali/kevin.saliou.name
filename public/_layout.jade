@@ -44,6 +44,7 @@ html(lang="#{ site_language }")
                     else
                         article.post
                             != yield
+                            != partial("_partials/addthis")
                             != partial("_partials/disqus")
         .clear
         footer
