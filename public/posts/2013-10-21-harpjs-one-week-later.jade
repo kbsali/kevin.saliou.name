@@ -153,3 +153,9 @@ ul
     li As mentioned earlier, I would really like to be able to publish a sitemap of my project for better integration with search engines.
     li All the generated code (CSS and HTML) is always compressed, it would be nice to be able to get the formatted/beautified versions too.
     li Explore the possibility to override global variables to dynamically change the meta description for instance depending on the page shown.
+        ul
+            li <strong>Fixed!</strong> This was as simple as asigning a new value to the global var at the top of the post source :
+                pre.
+                    - site_description = excerpt
+                    - site_keywords = keywords
+                    ...
