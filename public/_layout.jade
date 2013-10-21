@@ -1,16 +1,19 @@
 !!!
-html
+html(lang="#{ site_language }")
     head
         meta(charset="utf-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(name="description", content="")
         meta(name="author", content="#{ author_name }")
         meta(name="keywords", content="#{ site_keywords }")
-        meta(property="og:title", content="#{ title } | #{ site_name }")
+        meta(name="google-site-verification", content="#{ google_site_id }")
+
         meta(property="og:type", content="website")
+        meta(property="og:title", content="#{ title } | #{ site_name }")
         meta(property="og:description", content="#{ site_description }")
         meta(property="og:site_name", content="#{ title } | #{ site_name }")
         meta(property="og:url", content="#{ site_url }")
+        meta(property="og:image", content="#{ author_picture }")
 
         title #{ title } | #{ site_name }
 
@@ -22,7 +25,7 @@ html
         .container
             header
                 div(class="heady logo cell")
-                    a(href="/") Kevin Saliou
+                    a(href="/") #{ site_name }
                 div(class="heady cell right")
                     nav
                         a(href="/", class="#{ current.path == 'index' ? 'selected' : '' }") about
@@ -56,5 +59,4 @@ html
                 li
                     a(href="https://twitter.com/#{ twitter }")
                         i(class="icon-twitter")
-        if ua_id
-            != partial("_partials/ga")
+        != partial("_partials/ga")
