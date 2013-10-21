@@ -1,4 +1,10 @@
 {
+    "2013-10-21-harpjs-one-week-later": {
+        "title": "Harpjs one week later",
+        "excerpt": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
+        "date": "Oct 21, 2013",
+        "ispublished": true
+    },
     "2013-10-12-getting-started-with-harp": {
         "title": "Starting up with Harp",
         "excerpt": "Introduction to harps.js. Describes how to install and basic usage of the tool",
