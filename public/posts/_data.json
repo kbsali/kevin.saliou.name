@@ -1,6 +1,6 @@
 {
     "2013-10-22-geojson-carburantes": {
-        "title": "Petrol stations' prices",
+        "title": "Open petrol stations' prices data in Spain",
         "excerpt": "Introduction to a small project I work on to open Spain's pretrol prices data",
         "keywords": "open data, pyhon, javascript, petrol station, csv",
         "date": "Oct 22, 2013",
