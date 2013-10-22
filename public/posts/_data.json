@@ -32,7 +32,7 @@
         "excerpt": "Introduction to a small project I work on to open Spain's pretrol prices data",
         "keywords": "open data, pyhon, javascript, petrol station, csv",
         "date": "Oct 01, 2013",
-        "ispublished": false
+        "ispublished": true
     },
     "2012-09-27-install-redmine-2-1-0-on-debian-6-0": {
         "title": "Install Redmine 2.1.0 on Debian 6.0",

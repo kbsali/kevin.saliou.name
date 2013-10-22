@@ -6,12 +6,57 @@ p.meta #{ date }
 
 h2 Goals
 
-h2 GeoJson
+p.
+    Sometimes ago, I was home and needed to get petrol for my car. I quickly checked in google for <strong>gasolineras esapaña</strong> and quickly found an <em>official source : <a href="http://geoportal.mityc.es/hidrocarburos/eess/">Precios Carburantes: Ministerio de Industria, Energía y Turismo</a>. It was more than I asked : it provides a map - which is what I was looking for -, but also the price list for the area you are looking for. Sadly the user interface is very poor and the map itself not very helpful; for instance it does not offer the user a tool to navigate from his current location to the selected petrol station.
+p.
+    In fact there are quite a few apps available for <a href="https://play.google.com/store/search?q=gasolineras&c=apps">Android</a> and <a href="https://www.google.es/search?q=gasolineras+itunes&oq=gasolineras+itunes&aqs=chrome.0.69i59j0l2j69i60l2.4566j0j1&sourceid=chrome&ie=UTF-8">iOS</a> which fixes those issues : it geolocates the user, gives you, depending on the quality for the app, a clear way to identify which petrol station is cheaper than the other, and sometimes even offers the famous <em>navigation</em> option. But none of them were :
 
-h2 Tools
+ol
+    li open source
+    li mentionning where they were getting their data from
+    li offering a good web-only solution
 
-h3 Convert with Python
+p.
+    Native apps are fine, but for this type of solutions, I believe a web-app would be a much more siutable approach. It would allow access to any device (mobiles, computers/laptops), would not require any app to be installed - although a native app version of it could easily be built -, and with HTML5 getting more and more support from <a href="http://html5test.com/">most of the browsers</a> outthere the solution could be fully functional without having to write Java or Objective C code!
 
-h3 GitSpatial
+h2 Extracting the data
 
-h3 Leaflet
+p.
+    Anyway, first things first : does the <em>Ministerio de Industria, Energía y Turismo</em> freely provides this data? Yes! It provides a dedicated page for <a href="http://geoportal.mityc.es/hidrocarburos/eess/dispmovil.jsp">Downloading Files for Mobile Devices</a>. Basically it lets the user load the petrol stations' location and price list on their GPS devices. The only easy and <strong>open format</strong> available can be found under the <em>Portable GPS</em> category. From there you get a <strong>zip version of a badly formatted CSV file</strong>. <a href="https://twitter.com/cyrvin">Cyrille Vincey</a> made a very interesting presentation where he compares the <a href="http://www.slideshare.net/cvincey/opendata-benchmark-fr-vs-uk-vs-us">state of open data in UK, FR and US</a>. I'm not sure how Spain does to this respect in general, but this particular dataset would clearly be categorised as <strong>Semi-Structured data</strong> : there is an intent to give access to public data, but the final format is not usable.
+p.
+    So my first task was to try to transform the CSV information into a more usable format. My obvious first choice was <a href="http://www.json.org/">JSON</a>, but digging a bit more I realised that <a href="http://geojson.org/">GeoJson</a> was a much more appropriate format : it provides the perfect combination of flexibility for representing/interchanging geospatial datasets.
+p.
+    The result is a simple <strong>python</strong> script which downloads the latest zip files (the data is updated on an almost daily basis), it then extracts the CSV and transform that in GeoJson format : <a href="https://github.com/kbsali/gasolineras-espana">https://github.com/kbsali/gasolineras-espana</a>.
+
+p.
+    I'm running this script through a cronjob on my server (data available here : <a href="http://gas.saliou.name/geojson/latest/">http://gas.saliou.name/</a>)
+    which then automatically pushes the latest data to github : <a href="https://github.com/kbsali/gasolineras-espana-data">https://github.com/kbsali/gasolineras-espana-data</a>. And since August <a href="https://help.github.com/articles/mapping-geojson-files-on-github">Github has a geojson files previewer</a>, see it in action for the geojson files our script generates : <a href="https://github.com/kbsali/gasolineras-espana-data/blob/master/geojson/latest/G98.geojson">https://github.com/kbsali/gasolineras-espana-data/blob/master/geojson/latest/G98.geojson</a>.
+
+img(src="/img/2013-10-22-github-geojson-preview.jpg", alt="Github geojson preview")
+
+h2 The web-app
+
+p.
+    Now that we have the data, let's try to exploit them! Because of its verbosity, GeoJson files can get pretty big. In our case for instance, the GeoJson file for the <a href="https://github.com/kbsali/gasolineras-espana-data/blob/master/geojson/latest/GOA.geojson">Gasoleo Automoción (GOA)</a> is almost <em>1.2 Mb</em>! If we were to load the whole file with a 3G connection while on the road, that
+ol
+    li would take a while
+    li and simply could end up being expensive
+
+h3 GitSpatial to the rescue
+
+p.
+    That's where <a href="http://gitspatial.com/">GitSpatial</a> can be useful : this is a great <a href="https://github.com/JasonSanford/gitspatial">open-soruce project</a> by <a href="http://geojason.info/">Jason Sanford</a> which lets you syncronize public GeoJson GitHub repositories. Once syncronized, it gives you access to an API which returns chunks of your original data depending on coordinates. That's exactly what we need for our web-app : <em>"give me all the petrol stations having super unleaded in a distance range of 5km of my current location"</em>.
+
+
+h3 Leaflet + OpenStreetMap
+
+p.
+    I decided to try Leaflet and OpenStreetMap for showing the data and <a href="http://geojason.info/">Jason Sanford</a> also wrote this very handy JS library which allows to easily integrate <a href="http://jasonsanford.github.io/leaflet-vector-layers/documentation/#docs-gitspatial">GitSpatial's feature set with Leaflet and OpenStreetMap</a>. The first prototype of the web-app is available on my server : <a href="http://gasolineras.saliou.name/">http://gasolineras.saliou.name/</a>. This clearly is a work in progress and I am looking for help to get it right! At the moment
+ul
+    li the <em>geolocation</em> solution is not working great on some browsers (in Firefox for instance),
+    li when clicking/tapping on a pretrol station, the direction to this point is displayed, but clicking on another point won't erase the 1st route,
+    li it should be possible to type in a direction rather than only allowing to be geolocated,
+    li etc...
+
+p.
+    Once this web-app is really usable, I believe it would be very easy to convert it to a native app using <a href="http://docs.phonegap.com/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface">PhoneGap</a> for instance; I'm also curious to see how easy it would be to a <a href="http://www.mozilla.org/en-US/firefox/os/">Firefox OS</a> version of it!
