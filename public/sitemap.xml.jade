@@ -7,11 +7,10 @@ mixin tree(head, tail)
             prio = .4
             if /about/.test(tail + file)
               prio = .9
-            if /post/.test(tail + file)
+            if /posts/.test(tail + file)
               prio = .7
             if /index/.test(tail + file)
               prio = .6
-              //- p= tail + file
             url
               loc= tail + file
               priority= prio

@@ -1,0 +1,51 @@
+- site_description = excerpt
+- site_keywords = keywords
+h1 #{ title }
+
+p.meta #{ date }
+
+p.
+    <a href="/posts/2013-10-21-harpjs-one-week-later.html">Last week</a> I wrote about how I was missing some way to generate a sitemap files using Harpjs. I even <a href="https://github.com/sintaxi/harp/issues/131">filed an issue on github</a>, and I got a <a href="https://github.com/sintaxi/harp/issues/131#issuecomment-27181797">first solution</a> as promised! Here it is :
+pre.
+    mixin tree(head, tail)
+      for val, key in head
+        if key !== '.git' && key !== 'data'
+          if key == 'contents'
+            each file in val
+              p= tail + file
+          else
+            mixin tree(val, tail + key + "/")
+
+    h1 Sitemap
+    mixin tree(public, "/")
+
+p.
+    It introduces a new global variable <code>public</code> which holds all the files stored in your public directory. This example throws the results in <em>html</em> format, so here how I create my <code>sitemap.xml</code> :
+
+pre.
+    mixin tree(head, tail)
+      for val, key in head
+        if key !== '.git' && key !== 'data'
+          if key == 'contents'
+            each file in val
+              if /(\.html$)/.test(file)
+                prio = .4
+                if /about/.test(tail + file)
+                  prio = .9
+                if /posts/.test(tail + file)
+                  prio = .7
+                if /index/.test(tail + file)
+                  prio = .6
+                url
+                  loc= tail + file
+                  priority= prio
+          else
+            mixin tree(val, tail + key + "/")
+
+    xml
+      urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+        mixin tree(public, "/")
+
+p.
+    Nice, I now have my shiny new <a href="/sitemap.xml">sitemap.xml</a> file setup for google, bing and else to consume!
+    Note how I'm setting the <em>priority</em> value in a rather ugly way using regex, this is my 1st take; I bet more interesting solutions will come up soon! They metionned they would document all this soon! Thanks <a href="https://github.com/kennethormandy">@kennethormandy</a>.
