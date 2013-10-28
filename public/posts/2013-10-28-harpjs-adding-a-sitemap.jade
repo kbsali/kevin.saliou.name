@@ -42,9 +42,9 @@ pre.
           else
             mixin tree(val, tail + key + "/")
 
-    xml
-      urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
-        mixin tree(public, "/")
+    doctype xml
+    urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+      mixin tree(public, "/")
 
 p.
     Nice, I now have my shiny new <a href="/sitemap.xml">sitemap.xml</a> file setup for google, bing and else to consume!
