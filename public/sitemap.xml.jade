@@ -12,7 +12,7 @@ mixin tree(head, tail)
             if /index/.test(tail + file)
               prio = .6
             url
-              loc= tail + file
+              loc= site_url + tail + file
               priority= prio
       else
         mixin tree(val, tail + key + "/")

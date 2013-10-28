@@ -40,7 +40,7 @@ html(lang="#{ site_language }")
                         != yield
                     != partial("_partials/aside")
                 else
-                    if current.source == 'index'
+                    if current.source == 'index' || current.source == '404'
                         section
                             != yield
                     else
