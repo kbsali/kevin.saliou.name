@@ -64,7 +64,7 @@ html
                 div(class="col-xs-6 col-sm-3", id="sidebar", role="navigation")
                     div(class="well sidebar-nav")
                         ul.nav
-                            for post, slug in public.posts.data
+                            for post, slug in public.posts._data
                                 if post.ispublished
                                     li
                                         a(href="/posts/#{ slug }.html", class="#{ current.source == slug ? 'active' : '' }")=post.title
