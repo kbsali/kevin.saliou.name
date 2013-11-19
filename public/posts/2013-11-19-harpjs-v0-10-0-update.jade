@@ -1,0 +1,18 @@
+- site_description = excerpt
+- site_keywords = keywords
+h1 #{ title }
+
+p.meta #{ date }
+
+p.
+    After <a href="http://harpjs.com/blog/v0-10-0-200-catch-all">HarpJs v0.10.0</a> was released a few days ago, <a href="https://github.com/sintaxi/harp/releases/tag/v0.10.0">some small changes</a> were needed to keep my site working nicely. Here are the few points I had to work on :
+ul
+    li <code>public.posts.data</code> to <code>public.posts._data</code>
+    li added a missing dot "." to the <code>script</code> tag in <code>ga.jade</code>. I got a warning in my console when running <code>harp server</code> :
+        pre(class="terminal")
+            | /PATH/public/_partials/ga.jade, line 3:
+            | Implicit textOnly for `script` and `style` is deprecated.  Use `script.` or `style.` instead.
+    li finally fixed parse errors in <code>public/_partials/aside.jade</code>, <code>public/_partials/addthis.jade</code> and <code>public/_partials/disqus.jade</code> which were not giving any error before the version update.
+
+p.
+    You can check all this on <a href="https://github.com/kbsali/kevin.saliou.name/commit/345d0f780cb65b6566c98cdf4abea829476a70cf">github</a>. The newest version fo the Jade parser is stricter and it is better like that!

@@ -1,4 +1,11 @@
 {
+    "2013-11-19-harpjs-v0-10-0-update": {
+        "title": "Harpjs v0.10.0 update",
+        "excerpt": "Short post about the changes made to the templates for Harp's new v0.10.0 compatibility",
+        "keywords": "harp.js, jade, upgrade, v0.10.0",
+        "date": "Nov 19, 2013",
+        "ispublished": true
+    },
     "2013-10-28-harpjs-adding-a-sitemap": {
         "title": "Create a sitemap.xml with Harpjs",
         "excerpt": "Short post on how to generate a sitemap.xml for your site thanks to a \"new\" public variable",
