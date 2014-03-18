@@ -1,64 +1,71 @@
 {
+    "2014-03-11-water-meter": {
+        "title": "The Water Meter I'm dreaming of",
+        "site_description": "Water consumption awareness is crucial and I cannot find the product I would be happy to buy",
+        "site_keywords": "water, consumption, iot, wifi, open data",
+        "date": "Mar 11, 2014",
+        "ispublished": false
+    },
     "2013-11-19-harpjs-v0-10-0-update": {
         "title": "Harpjs v0.10.0 update",
-        "excerpt": "Short post about the changes made to the templates for Harp's new v0.10.0 compatibility",
-        "keywords": "harp.js, jade, upgrade, v0.10.0",
+        "site_description": "Short post about the changes made to the templates for Harp's new v0.10.0 compatibility",
+        "site_keywords": "harp.js, jade, upgrade, v0.10.0",
         "date": "Nov 19, 2013",
         "ispublished": true
     },
     "2013-10-28-harpjs-adding-a-sitemap": {
         "title": "Create a sitemap.xml with Harpjs",
-        "excerpt": "Short post on how to generate a sitemap.xml for your site thanks to a \"new\" public variable",
-        "keywords": "harp.js, javascript, jade, mixins, seo",
+        "site_description": "Short post on how to generate a sitemap.xml for your site thanks to a \"new\" public variable",
+        "site_keywords": "harp.js, javascript, jade, mixins, seo",
         "date": "Oct 28, 2013",
         "ispublished": true
     },
     "2013-10-22-geojson-carburantes": {
         "title": "Open petrol stations' prices data in Spain",
-        "excerpt": "Introduction to a small project I work on to open Spain's pretrol prices data",
-        "keywords": "open data, pyhon, javascript, petrol station, csv",
+        "site_description": "Introduction to a small project I work on to open Spain's pretrol prices data",
+        "site_keywords": "open data, pyhon, javascript, petrol station, csv",
         "date": "Oct 22, 2013",
         "ispublished": true
     },
     "2013-10-21-harpjs-one-week-later": {
         "title": "Harpjs one week later",
-        "excerpt": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
-        "keywords": "harp.js, javascript, jade, less, partials, metadata",
+        "site_description": "I've been working with Harp.js for a bit more than a week now, how I like and dislike so far",
+        "site_keywords": "harp.js, javascript, jade, less, partials, metadata",
         "date": "Oct 21, 2013",
         "ispublished": true
     },
     "2013-10-12-getting-started-with-harp": {
         "title": "Starting up with Harp",
-        "excerpt": "Introduction to harps.js. Describes how to install and basic usage of the tool",
-        "keywords": "harp.js, javascript, jade, less, introduction, tutorial",
+        "site_description": "Introduction to harps.js. Describes how to install and basic usage of the tool",
+        "site_keywords": "harp.js, javascript, jade, less, introduction, tutorial",
         "date": "Oct 12, 2013",
         "ispublished": true
     },
     "2013-10-11-getting-started-with-jade": {
         "title": "Starting up with Jade",
-        "excerpt": "Covers the very basics of Javascript templating language Jade",
-        "keywords": "javascript, jade, introduction, tutorial",
+        "site_description": "Covers the very basics of Javascript templating language Jade",
+        "site_keywords": "javascript, jade, introduction, tutorial",
         "date": "Oct 11, 2013",
         "ispublished": true
     },
     "2013-10-08-looking-for-the-static-site-generator": {
         "title": "Looking for The static site generator",
-        "excerpt": "Trying to decide which static site generator solution to use for builing my personal web site",
-        "keywords": "javascript, python, ruby, php, static site generator",
+        "site_description": "Trying to decide which static site generator solution to use for builing my personal web site",
+        "site_keywords": "javascript, python, ruby, php, static site generator",
         "date": "Oct 08, 2013",
         "ispublished": true
     },
     "2012-09-27-install-redmine-2-1-0-on-debian-6-0": {
         "title": "Install Redmine 2.1.0 on Debian 6.0",
-        "excerpt": "How to install Redmine on a Debian server",
-        "keywords": "debian, redmine, bash, aptitude, yaml, configuration",
+        "site_description": "How to install Redmine on a Debian server",
+        "site_keywords": "debian, redmine, bash, aptitude, yaml, configuration",
         "date": "Sep 27, 2012",
         "ispublished": true
     },
     "2012-09-01-samsung-galaxy-nexus-411-upgrade": {
         "title": "Samsung Galaxy Nexus 4.1.1 upgrade",
-        "excerpt": "How to upgrade the Samsung Galaxy Nexus smartphone to Android 4.1.1 stock mod",
-        "keywords": "android, tutorial, flash, 4.1.1, samsung galaxy nexus",
+        "site_description": "How to upgrade the Samsung Galaxy Nexus smartphone to Android 4.1.1 stock mod",
+        "site_keywords": "android, tutorial, flash, 4.1.1, samsung galaxy nexus",
         "date": "Sep 01, 2012",
         "ispublished": true
     }
