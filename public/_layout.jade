@@ -34,9 +34,9 @@ html(lang="#{ site_language }")
                         a(href="/", class="#{ current.path != 'about' ? 'selected' : '' }") posts
         .container
             .site
-                //- section(class="about-me" itemscope itemtype="http://data-vocabulary.org/Person")
+                //- section(class="about-me" itemscope itemtype="http://schema.org/Person")
                 if current.path == 'about' && current.source == 'about'
-                    section(id="about-me", itemscope, itemtype="http://data-vocabulary.org/Person")
+                    section(id="about-me", itemscope, itemtype="http://schema.org/Person")
                         != yield
                     != partial("_partials/aside")
                 else
